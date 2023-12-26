@@ -3,29 +3,22 @@ const rootElement = ReactDOM.createRoot(document.getElementById('root'));
 let score = 0;
 let wicket = 0;
 let ballWiseResult = new Array;
-console.log(ballWiseResult);
+let hit = 0;
+let inputRef = React.createRef();
 
 function addScore(num) {
-    if (wicket<10) {
-        score+=num;
-        ballWiseResult.push(num);
-        rootElement.render(<App/>);   
-        console.log(ballWiseResult);
-    }
+    hit = num;
+    rootElement.render(<App/>);
+    console.log(hit);
 }
 
 function addWicket() {
-    if (wicket<10) {
-        wicket+=1;
-        ballWiseResult.push("W");
-        rootElement.render(<App/>);   
-        console.log(ballWiseResult);
-    }
-    else if(wicket >= 10){
-        console.log("Match Over");
-    }
+    hit = "W";
+    rootElement.render(<App/>);
+    console.log(hit);
 }
 
+// Run and wkt adding buttons
 const ScoreButtons = () =>(
     <div>
         <button onClick={()=> addScore(0)}> 0 </button>
@@ -39,33 +32,44 @@ const ScoreButtons = () =>(
     </div>
 )
 
+// Fetch all result(score & commentry)
 const Result =()=>(
     <div>
         {ballWiseResult.map((res,index)=>(
             <>
-            {index%6 === 0? <br/>: null}
-
-            <span key={index} style={res==="W"?{color:"red"}:null} className="circle"> 
-                {res===0 ? <strong> . </strong>: res} 
-            </span>
-
+            <p key={index}> {res} </p>
             </>
         ))}
     </div>
 )
 
+// submit form of score & comment
 function handleSubmit(event) {
     event.preventDefault();
+    if(wicket<10){
+    ballWiseResult.unshift(
+        <span> {`${hit},${inputRef.current.value}`} </span>
+    );
+
+    {hit=="W"?wicket+=1:score+=hit};
+
+    hit=0;
+    inputRef.current.value = "";
+
+    rootElement.render(<App/>);
+    }
 }
 
+// Score & comment added here
 const Form = () =>(
     <form onSubmit={handleSubmit}>
-        <input/>
-        <input/>
+        <input value={hit} />
+        <input ref={inputRef} placeholder="Add a comment!"/>
         <button> Submit </button>
     </form>
 )
 
+// Main APP
 const App =()=>(
             <>
             <h1> SCORE KEEPER APP </h1>
@@ -78,4 +82,4 @@ const App =()=>(
             </>
 )
 
-rootElement.render(<App/>)
+rootElement.render(<App/>);
