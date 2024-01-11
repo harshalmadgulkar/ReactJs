@@ -1,19 +1,6 @@
 import React from "react";
 
 class MovieCard extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      title: "The Avengers",
-      poster:"https://m.media-amazon.com/images/M/MV5BNDYxNjQyMjAtNTdiOS00NGYwLWFmNTAtNThmYjU5ZGI2YTI1XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg",
-      plot: "Earths mightiest heroes must come together and learn to fight as a team if they are going to stop the mischievous Loki and his alien army from enslaving humanity.",
-      price: 199,
-      stars: 0,
-      rating: 8.9,
-      fav: false,
-      isInCart: false,
-    };
-  }
 
   addStar = () => {
     if (this.state.stars >= 5) {
@@ -55,7 +42,7 @@ class MovieCard extends React.Component {
   }
 
   render() {
-    const { title, poster, plot, price, stars, rating, fav, isInCart } = this.state;
+    const { title, poster, plot, price, stars, rating, fav, isInCart } = this.props.movie;
     return (
       <div className="main">
         {/**Movie Card */}
