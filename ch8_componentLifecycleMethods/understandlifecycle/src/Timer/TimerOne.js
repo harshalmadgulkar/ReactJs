@@ -5,7 +5,6 @@ class TimerOne extends React.Component {
     super();
     this.state = {
       time: 0,
-      startTimer: false,
     };
     this.timer = null;
     console.log("TimerOne Constructor");
@@ -31,18 +30,10 @@ class TimerOne extends React.Component {
     console.log(this.state);
 
     return (
-      <>
-        <h1>
-          Time Spent{" "}
-          {this.state.startTimer
-            ? new Date(this.state.time * 1000).toISOString().slice(11, 19)
-            : "00:00:00"}
-        </h1>
-        <button onClick={() => this.handleStartStop()}>
-          {" "}
-          {this.state.startTimer ? "STOP" : "START"}{" "}
-        </button>
-      </>
+      div>
+        <h2>Time Spent: {this.state.time}</h2>
+        {new Date(this.state.time * 1000).toISOString().slice(11, 19)}
+      </div>
     );
   }
 
@@ -56,15 +47,23 @@ class TimerOne extends React.Component {
     return null;
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps,prevState,snapShot) {
     console.log("TimerOne componentDidUpdate");
     console.log("__________________________");
+    console.log("prevProps",prevProps);
+    console.log("prevState",prevState);
+    console.log("snapShot",snapShot);
 
-    if (this.state.startTimer) {
+    if (prevProps.timerOn!== this.props.timerOn) {
+      if(this.props.timerOn){
         this.timer = setInterval(() => {
           this.setState((prevState) => ({ time: prevState.time + 1 }));
         }, 1000);
       }
+      else{
+        clearInterval(this.timer);
+      }
+    }
   }
 
   componentWillUnmount() {
