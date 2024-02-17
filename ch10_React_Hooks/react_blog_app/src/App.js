@@ -1,17 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import "./App.css";
-import BlogForm from "./BlogForm";
-import Blogs from "./Blogs";
+import Blog from './components/Blog'
 
-function App() {
-  const [blogArray, setblogArray] = useState([]);
+export default function App() {
 
   return (
-    <>
-      <BlogForm blogArray={blogArray} setblogArray={setblogArray} />
-      <Blogs blogArray={blogArray} setblogArray={setblogArray} />
-    </>
+    <Blog />
   );
 }
-
-export default App;
