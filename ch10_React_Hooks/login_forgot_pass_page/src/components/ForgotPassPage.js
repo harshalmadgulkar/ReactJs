@@ -1,19 +1,23 @@
-import React, { useEffect, useState } from "react";
+import useLocalStorage from './useLocalStorage';
 
 export default function ForgotPassPage() {
-  const [email, setEmail] = useState("");
+  // const [email, setEmail] = useState("");
 
-  useEffect(() => {
-    let email = localStorage.getItem("email");
-    console.log(email);
-    if (email) {
-      setEmail(email);
-    }
-  }, []);
+  // // find email from localStorage and setEmail on mounting
+  // useEffect(() => {
+  //   let email = localStorage.getItem("email");
+  //   console.log(email);
+  //   if (email) {
+  //     setEmail(email);
+  //   }
+  // }, []);
 
-  useEffect(() => {
-    localStorage.setItem("email", email);
-  }, [email]);
+  // // setItem in localStorage when email changes
+  // useEffect(() => {
+  //   localStorage.setItem("email", email);
+  // }, [email]);
+
+  const {email, setEmail} = useLocalStorage();
 
   return (
     <>
