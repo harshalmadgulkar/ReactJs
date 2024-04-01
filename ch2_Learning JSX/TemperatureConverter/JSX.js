@@ -10,7 +10,7 @@ const App = () =>{
 
     return(
         <>
-        <h1> Temperature Converter </h1>
+        <h1> Temperature Converter (HomeWork) </h1>
         <p>Temperature in fahrenheit: {fahrenheitTemp} </p>
         <p> Temperature in celsius: {fToC(fahrenheitTemp)} </p>
         </>

@@ -5,18 +5,21 @@ const App = () => {
     let name = "Alex";
     let lastName = "Diaz"
 
-    // return  <>
-    //         <h1> Hello {loggedIn?"Alex":"User"}! </h1>
-    //         {loggedIn && <p>Welcome to the Portal </p>}
-    //         </>
+    // conditional rendering
+    return  <>
+            <h1> Hello {loggedIn?"Alex":"User"}! </h1>
+            {/* AND operator rendering */}
+            {loggedIn && <p>Welcome to the Portal </p>}
+            </>
 
+// OR operator rendering
     // return <>
     //        <h1> Hello {lastName || name}! </h1>
     //        </>
 
-    return  <>
-            <h1> Hello {loggedIn? lastName||name : "User"}! </h1>
-            </>
+    // return  <>
+    //         <h1> Hello {loggedIn? lastName||name : "User"}! </h1>
+    //         </>
 }
 
 rootElement.render(<App/>);
