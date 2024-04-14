@@ -4,7 +4,7 @@ import { useState } from 'react';
 // imports redux methods
 import { useDispatch, useSelector } from 'react-redux';
 // import actions, selector(state) from reducer
-import { add } from '../../redux/reducers/todoReducer.js';
+import { add, addTodoAsync } from '../../redux/reducers/todoReducer.js';
 import {
 	notificationSelector,
 	resetNotification,
@@ -15,7 +15,7 @@ function ToDoForm() {
 	const dispatch = useDispatch();
 
 	const message = useSelector(notificationSelector);
-	console.log(message);
+	// console.log(message);
 
 	if (message) {
 		setTimeout(() => {
@@ -25,7 +25,7 @@ function ToDoForm() {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		dispatch(add(todoText));
+		dispatch(addTodoAsync(todoText));
 		setTodoText('');
 	};
 
